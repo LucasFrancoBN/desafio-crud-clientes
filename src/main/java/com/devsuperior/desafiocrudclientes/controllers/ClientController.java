@@ -38,7 +38,7 @@ public class ClientController {
   }
 
   @PostMapping
-  public ResponseEntity<ClientDTO> insert(@RequestBody ClientDTO clientDTO) {
+  public ResponseEntity<ClientDTO> insert(@Valid @RequestBody ClientDTO clientDTO) {
     ClientDTO savedClient = clientService.insert(clientDTO);
     URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedClient.id()).toUri();
     return ResponseEntity.created(uri).body(savedClient);
